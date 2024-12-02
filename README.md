@@ -100,6 +100,7 @@ vagrant up
 ```
 Esto iniciará las máquinas virtuales con las configuraciones definidas en el Vagrantfile.
 
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](/images/vagrant_up.png)
 
 ## 2. Configuración de Ansible
 

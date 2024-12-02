@@ -14,7 +14,7 @@ Abre una terminal en tu máquina local.
 ssh-keygen -t rsa -b 4096
 ```
 
-Presiona Enter para aceptar la ubicación predeterminada del archivo de clave (normalmente ~/.ssh/id_rsa) y, si lo deseas, proporciona una frase de contraseña para proteger la clave. Una vez generada la clave, puedes encontrarla en ~/.ssh/id_rsa.pub.
+Presiona Enter para aceptar la ubicación predeterminada del archivo de clave (normalmente `~/.ssh/id_rsa`) y, si lo deseas, proporciona una frase de contraseña para proteger la clave. Una vez generada la clave, puedes encontrarla en `~/.ssh/id_rsa.pub`.
 
 
 ## 1. Configuración del Vagrantfile
@@ -154,12 +154,14 @@ echo "[vm1]
 192.168.56.102 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/private_key_vm2
 " > /vagrant/hosts
 ```
-![Creacion de archico hosts](/images/hosts.png)
+![Creacion de archivo hosts](/images/hosts.png)
 
 ## 3. Creación de Playbooks de Ansible
 
 ### 3.1. Playbook para Nginx en VM1
 Crea el archivo `/vagrant/install_nginx.yml` en **VM1**:
+
+![Creacion de playbook nginx](/images/crea_playbook_nginx.png)
 
 ```ruby
 ---
@@ -197,6 +199,8 @@ Crea el archivo `/vagrant/install_nginx.yml` en **VM1**:
 
 ### 3.2. Playbook para Prometheus y Grafana en VM2
 Crea el archivo `/vagrant/install_prometheus_grafana.yml` en **VM1**:
+
+![Creacion de playbook grafana](/images/crea_playbook_grafana.png)
 
 ```ruby
 ---
@@ -246,7 +250,7 @@ Crea el archivo `/vagrant/install_prometheus_grafana.yml` en **VM1**:
         enabled: yes
 ```
 
-# 4. Ejecutar los Playbooks
+## 4. Ejecutar los Playbooks
 Ejecuta los playbooks desde la máquina virtual VM1:
 
 ```bash

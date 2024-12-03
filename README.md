@@ -283,3 +283,9 @@ Accede desde un navegador a:
 (Usuario/Contraseña: admin / admin).
 
   ![Prueba de grafana](/images/test_grafana.png)
+
+
+#### Integrantes
+- Andres Mauricio Ariza: 2217297
+- Eduardo Stevens Marino: 2217227
+- Harlem Maaria Cortes: 2220814

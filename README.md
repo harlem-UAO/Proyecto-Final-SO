@@ -6,6 +6,8 @@ En esta guía, se detallan los pasos para configurar dos máquinas virtuales Lin
 - **VM1:** Servidor web con Nginx.
 - **VM2:** Servidores de monitoreo con Prometheus y Grafana.
 
+En el siguiente link se encuentra el [Video Demo](https://uao-my.sharepoint.com/:v:/g/personal/andres_mau_ariza_uao_edu_co/ERoAxDsY-GJIkKLgwwY059IB_r5Mq-zLX8i8iueJFuYz-Q?e=XHO4cV)
+
 Antes de empezar se debe generar una clave SSH en tu máquina local. Si no tienes una, puedes generarla siguiendo estos pasos:
 
 Abre una terminal en tu máquina local.

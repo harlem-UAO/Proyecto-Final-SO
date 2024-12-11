@@ -23,12 +23,14 @@ Una vez que estés dentro de la VM, navega al directorio donde Nginx busca los a
 cd /var/www/html
 ```
 ![Listar directorio html](images/ls_html.png)
+
 Si no existe, crea un nuevo directorio donde almacenarás tu sitio web estático:
 
 ```bash
 sudo mkdir mi_sitio_estatico
 cd mi_sitio_estatico
 ```
+![Crear directorio](images/sudo mkdir.png)
 
 ### 1.3. Subir los Archivos HTML e imagenes
 

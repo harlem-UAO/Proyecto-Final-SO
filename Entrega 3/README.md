@@ -111,6 +111,7 @@ Crear el archivo del servicio:
 ```bash
 sudo nano /etc/systemd/system/node_exporter.service
 ```
+![Crear servicio](images/node_service.png)
 
 Agrega la configuración siguiente:
 
@@ -166,12 +167,14 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9100']  # Exportador de métricas del sistema
 ```
+![Editar prometheus](images/nano_prometheus.png)
 
 Despues de hacer los cambios en la configuración de Prometheus, reinicia el servicio para que los cambios surtan efecto:
 
 ```bash
 sudo systemctl restart prometheus
 ```
+![Reiniciar servicio](images/restart_prometheus.png)
 
 ### 3.5. Verificar el Funcionamiento de Prometheus
 
@@ -180,23 +183,27 @@ sudo systemctl restart prometheus
    ```bash
    http://192.168.56.102:9090
    ```
-
-2. Dentro de la interfaz de Prometheus, buscamos las métricas que deseamos verificar:
+   ![Ver prometheus](images/prometheus.png)
+   
+3. Dentro de la interfaz de Prometheus, buscamos las métricas que deseamos verificar:
 
    - **Peticiones recibidas**: 
      ```prometheus
      http_requests_total
      ```
+     ![Ver metrica](images/http_request.png)
 
    - **Consumo de memoria**:
      ```prometheus
-     node_memory_MemTotal_bytes - node_memory_MemFree_bytes
+     node_memory_MemAvailable
      ```
+     ![Ver metrica](images/node_memory.png)
 
    - **Consumo de disco**:
      ```prometheus
-     node_filesystem_size_bytes - node_filesystem_avail_bytes
+     node_filesystem_free
      ```
+     ![Ver metrica](images/node_filesystem.png)
 
 En la interfaz de Prometheus, asegúrate de que las métricas de peticiones, memoria y disco estén apareciendo correctamente. Puedes hacer esto al ingresar las consultas mencionadas anteriormente en el campo de búsqueda de la interfaz.
 
@@ -244,6 +251,7 @@ Grafana es una herramienta poderosa para visualizar las métricas recopiladas po
      ```
 
 4. Por ultimo, guardamos el dashboard y le ponemos un nombre.
+![Ver grafana](images/grafana.png)
 
 ---
 #### Integrantes

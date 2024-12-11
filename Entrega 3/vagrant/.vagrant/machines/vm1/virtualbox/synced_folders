@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/html/mi_sitio_estatico":{"guestpath":"/var/www/html/mi_sitio_estatico","hostpath":"C:/Users/harle/Entrega_2/ninestars_static_web","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/harle/Entrega_2","disabled":false,"__vagrantfile":true}}}

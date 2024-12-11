@@ -30,7 +30,7 @@ Si no existe, crea un nuevo directorio donde almacenarás tu sitio web estático
 sudo mkdir mi_sitio_estatico
 cd mi_sitio_estatico
 ```
-![Crear directorio](images/sudo mkdir.png)
+![Crear directorio](images/sudo_mkdir.png)
 
 ### 1.3. Subir los Archivos HTML e imagenes
 
@@ -58,7 +58,7 @@ Una vez que hayas subido los archivos, verifica que estén en el directorio corr
 ```bash
 ls /var/www/html/mi_sitio_estatico
 ```
-
+![Listar directorio](images/ls_html_2.png)
 
 ## Paso 2: Acceder al Sitio Web Estático desde el Navegador
 
@@ -72,6 +72,9 @@ Ahora que los archivos han sido cargados correctamente, debes verificar que el s
 
 2. Si todo está configurado correctamente, se deberia cargar la pagina web estatica.
 
+  ![Pagina web](images/web_static.png)
+  
+
 ## Paso 3: Verificar que Prometheus Está Recopilando Métricas del Servidor
 
 En este paso, instalaremos el **node_exporter** y configuraremos **Prometheus** para recopilar métricas importantes de la máquina virtual, como peticiones recibidas, consumo de memoria y consumo de disco.
@@ -84,6 +87,7 @@ Descarga Node Exporter en su version mas reciente, en nuestro caso la 1.8.2:
 ```bash
 wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
 ```
+![Descargar node exporter](images/download_node.png)
 
 Extrae el archivo descargado:
 
@@ -91,12 +95,14 @@ Extrae el archivo descargado:
 tar -xvzf node_exporter-1.8.2.linux-amd64.tar.gz
 cd node_exporter-1.8.2.linux-amd64
 ```
+![Abrir archivo](images/tar_node.png)
 
 Mueve el binario al sistema:
 
 ```bash
 sudo mv node_exporter /usr/local/bin/
 ```
+![Mover archivo](images/mv_node.png)
 
 ### 3.2. Configurar Node Exporter como un Servicio
 
@@ -128,6 +134,7 @@ sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 ```
+![Iniciar servicio](images/node_start.png)
 
 ### 3.3. Verificar la Instalación
 
@@ -136,12 +143,14 @@ Ejecuta los siguiente comandos para verificar que el node_exporter se instalo co
 ```bash
 sudo systemctl status node_exporter
 ```
+![Ver estado](images/status_node.png)
 
 Accede desde el navegador al puerto por defecto (9100):
 
 ```arduino
 http://192.168.56.101:9100/metrics
 ```
+![Ver metrics](images/vm1_metrics.png)
 
 ### 3.4. Configuración de Prometheus 
 

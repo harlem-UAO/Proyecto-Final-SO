@@ -1,7 +1,7 @@
 
 # Guía para Desplegar un Sitio Web Estático, Configuración y Monitoreo con Prometheus y Grafana
 
-Este documento describe cómo cargar un sitio web estático en un servidor Nginx, configurar Prometheus para recopilar métricas de la máquina virtual y luego usar Grafana para visualizar estas métricas.
+Esta guía describe cómo cargar un sitio web estático en un servidor Nginx, configurar Prometheus para recopilar métricas de la máquina virtual y luego usar Grafana para visualizar estas métricas.
 
 ## Paso 1: Cargar Archivos Necesarios para Desplegar un Sitio Web Estático
 
@@ -30,7 +30,7 @@ sudo mkdir mi_sitio_estatico
 cd mi_sitio_estatico
 ```
 
-### 1.3. Subir los Archivos HTML e Imagen
+### 1.3. Subir los Archivos HTML e imagenes
 
 #### Uso de Directorios Sincronizados con **Vagrant**
 
@@ -198,7 +198,7 @@ Grafana es una herramienta poderosa para visualizar las métricas recopiladas po
 1. En el navegador, acceder a la interfaz de Grafana en el puerto `3000` por defecto:
 
    ```bash
-   http://i192.168.65.102:3000
+   http://192.168.65.102:3000
    ```
 
 2. Inicia sesión en Grafana utilizando las credenciales predeterminadas (usuario: `admin`, contraseña: `admin`), o las credenciales que hayas configurado previamente.

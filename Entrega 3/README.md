@@ -22,7 +22,7 @@ Una vez que estés dentro de la VM, navega al directorio donde Nginx busca los a
 ```bash
 cd /var/www/html
 ```
-![Listar directorio html](`Entrega 3/images/ls_html.png`)
+![Listar directorio html](Entrega 3/images/ls_html.png)
 Si no existe, crea un nuevo directorio donde almacenarás tu sitio web estático:
 
 ```bash

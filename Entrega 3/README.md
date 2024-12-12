@@ -149,8 +149,14 @@ Ahora solo nos falta modificar nuestro `vagrantfile` para agregar la siguiente c
     ansible.playbook = "install_node_exporter.yml"
   end
 ```
-
 Por ultimo, ejecutamos `vagrant reload` para reiniciar nuestras maquinas virtuales.
+
+Otra opcion en caso de que host sea wwindows, ya que estos no pueden ejecutar Ansible de forma nativa es ejecutar el playbook desde una de mas maquinas virtuales:
+```bash
+   ansible-playbook -i /vagrant/hosts /vagrant/node_exporter_nginx.yml
+```
+![Ver estado](images/playbook_node.png)
+
 
 ### 3.3. Verificar la Instalación
 

@@ -150,7 +150,7 @@ Ahora solo nos falta modificar nuestro `vagrantfile` para agregar la siguiente c
   end
 ```
 
-Finalmente ejecutamos `vagrant reload` para reiniciar nuestras maquinas virtuales.
+Por ultimo, ejecutamos `vagrant reload` para reiniciar nuestras maquinas virtuales.
 
 ### 3.3. Verificar la Instalación
 

@@ -105,7 +105,7 @@ Vamos a instalar `node_exporter` por medio del provisionamiento con Ansible, par
         remote_src: yes
 
     - name: Mover binario de Node Exporter
-      command: mv /usr/local/bin/node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/node_exporter
+      command: mv /usr/local/bin/node_exporter-1.8.2.linux-amd64/node_exporter /usr/local/bin/node_exporter
 
     - name: Crear usuario para Node Exporter
       user:

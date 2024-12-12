@@ -29,13 +29,13 @@ Abre PowerShell crear y entra al directorio donde quieres configurar vagrant:
 mkdir Entrega_2
 cd Entrega_2
 ```
-![Ejecucion de mkdir](/images/mkdir.png)
+![Ejecucion de mkdir](images/mkdir.png)
 
 Inicializa vagrant en el directorio:
 ```bash
 vagrant init
 ```
-![Ejecucion de vagrant init](/images/varant_init.png)
+![Ejecucion de vagrant init](images/varant_init.png)
 
 Modifica tu archivo Vagrantfile con el siguiente contenido:
 
@@ -104,7 +104,7 @@ vagrant up
 ```
 Esto iniciará las máquinas virtuales con las configuraciones definidas en el Vagrantfile.
 
-![Ejecucion de vagrant up](/images/vagrant_up.png)
+![Ejecucion de vagrant up](images/vagrant_up.png)
 
 ## 2. Configuración de Ansible
 
@@ -114,7 +114,7 @@ Ejecuta el siguiente comando:
 ```bash
 vagrant ssh vm1
 ```
-![Ejecucion de vagrant ssh](/images/vagrant_ssh.png)
+![Ejecucion de vagrant ssh](images/vagrant_ssh.png)
 
 ### Paso 2: Instalar Ansible en VM1
 Dentro de la máquina virtual, instala Ansible:
@@ -123,9 +123,9 @@ Dentro de la máquina virtual, instala Ansible:
 sudo apt update
 sudo apt install ansible -y
 ```
-![Ejecucion de sudo apt update](/images/sudo_apt_update.png)
+![Ejecucion de sudo apt update](images/sudo_apt_update.png)
 
-![Ejecucion de install ansible](/images/install_ansible.png)
+![Ejecucion de install ansible](images/install_ansible.png)
 
 ### Paso 3: Configurar el Inventario de Ansible
 Antes de crear el inventario, se recomienda evitar directorios de escritura global: El directorio /vagrant es compartido entre el host y la VM con permisos amplios. Esto puede ser útil para compartir archivos, pero no es ideal para manejar claves privadas. Considera mover las claves privadas a un directorio más seguro dentro de la VM, como `/home/vagrant/.ssh/`:
@@ -143,7 +143,7 @@ cp /vagrant/.vagrant/machines/vm2/virtualbox/private_key /home/vagrant/.ssh/priv
 chmod 600 /home/vagrant/.ssh/private_key_vm2
 ```
 
-![Ejecucion de cp para mover las keys](/images/move_keys.png)
+![Ejecucion de cp para mover las keys](images/move_keys.png)
 
 Por ultimo, en la máquina virtual, crea un archivo hosts:
 
@@ -156,14 +156,14 @@ echo "[vm1]
 192.168.56.102 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/private_key_vm2
 " > /vagrant/hosts
 ```
-![Creacion de archivo hosts](/images/hosts.png)
+![Creacion de archivo hosts](images/hosts.png)
 
 ## 3. Creación de Playbooks de Ansible
 
 ### 3.1. Playbook para Nginx en VM1
 Crea el archivo `/vagrant/install_nginx.yml` en **VM1**:
 
-![Creacion de playbook nginx](/images/crea_playbook_nginx.png)
+![Creacion de playbook nginx](images/crea_playbook_nginx.png)
 
 ```ruby
 ---
@@ -202,7 +202,7 @@ Crea el archivo `/vagrant/install_nginx.yml` en **VM1**:
 ### 3.2. Playbook para Prometheus y Grafana en VM2
 Crea el archivo `/vagrant/install_prometheus_grafana.yml` en **VM1**:
 
-![Creacion de playbook grafana](/images/crea_playbook_grafana.png)
+![Creacion de playbook grafana](images/crea_playbook_grafana.png)
 
 ```ruby
 ---
@@ -259,9 +259,9 @@ Ejecuta los playbooks desde la máquina virtual VM1:
 ansible-playbook -i /vagrant/hosts /vagrant/install_nginx.yml
 ansible-playbook -i /vagrant/hosts /vagrant/install_prometheus_grafana.yml
 ```
-![Ejecucion del playbook para instalar gninx](/images/plarbook_gninx.png)
+![Ejecucion del playbook para instalar gninx](images/plarbook_gninx.png)
 
-![Ejecucion del playbook para instalar grafana](/images/plarbook_grafana.png)
+![Ejecucion del playbook para instalar grafana](images/plarbook_grafana.png)
 
 ## 5. Verificación de Servicios
 ### 5.1. Nginx en VM1
@@ -270,19 +270,19 @@ Accede desde un navegador a:
 ```text
 http://192.168.56.101
 ```
-![Prueba de nginx](/images/test_gninx.png)
+![Prueba de nginx](images/test_gninx.png)
 
 ### 5.2. Prometheus y Grafana en VM2
 Accede desde un navegador a:
 
 - **Prometheus:** http://192.168.56.102:9090
   
-  ![Prueba de prometheus](/images/test_prometheus.png)
+  ![Prueba de prometheus](images/test_prometheus.png)
   
 - **Grafana:** http://192.168.56.102:3000
 (Usuario/Contraseña: admin / admin).
 
-  ![Prueba de grafana](/images/test_grafana.png)
+  ![Prueba de grafana](images/test_grafana.png)
 
 
 #### Integrantes

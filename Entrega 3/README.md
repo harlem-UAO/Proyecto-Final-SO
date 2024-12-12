@@ -146,7 +146,7 @@ Ahora solo nos falta modificar nuestro `vagrantfile` para agregar la siguiente c
 ```init
   # Provisionar con Ansible para todas las VMs
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbook.yml"
+    ansible.playbook = "install_node_exporter.yml"
   end
 ```
 

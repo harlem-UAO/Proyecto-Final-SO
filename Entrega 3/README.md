@@ -82,62 +82,65 @@ Ahora que los archivos han sido cargados correctamente, debes verificar que el s
 En este paso, instalaremos el **node_exporter** y configuraremos **Prometheus** para recopilar métricas importantes de la máquina virtual, como peticiones recibidas, consumo de memoria y consumo de disco.
 
 
-### 3.1. Descargar Node Exporter en **VM1**
+### 3.1. Instalar Node Exporter en las maquinas virtuales
 
-Descarga Node Exporter en su version mas reciente, en nuestro caso la 1.8.2:
-
-```bash
-wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
-```
-![Descargar node exporter](images/download_node.png)
-
-Extrae el archivo descargado:
+Vamos a instalar `node_exporter` por medio del provisionamiento con Ansible, para esto debemos crear un playbook con el script para descargar y configuar `node_exporter` en todos nuestros nodos:
 
 ```bash
-tar -xvzf node_exporter-1.8.2.linux-amd64.tar.gz
-cd node_exporter-1.8.2.linux-amd64
+---
+- name: Instalar Node Exporter en todas las VMs
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Descargar Node Exporter
+      get_url:
+        url: "https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz"
+        dest: "/tmp/node_exporter.tar.gz"
+
+    - name: Extraer Node Exporter
+      unarchive:
+        src: "/tmp/node_exporter.tar.gz"
+        dest: "/usr/local/bin/"
+        remote_src: yes
+
+    - name: Mover binario de Node Exporter
+      command: mv /usr/local/bin/node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/node_exporter
+
+    - name: Crear usuario para Node Exporter
+      user:
+        name: node_exporter
+        system: yes
+        shell: /sbin/nologin
+
+    - name: Crear archivo de servicio para Node Exporter
+      copy:
+        dest: /etc/systemd/system/node_exporter.service
+        content: |
+          [Unit]
+          Description=Node Exporter
+          After=network.target
+
+          [Service]
+          User=node_exporter
+          ExecStart=/usr/local/bin/node_exporter
+          Restart=always
+
+          [Install]
+          WantedBy=default.target
+
+    - name: Recargar systemd
+      command: systemctl daemon-reload
+
+    - name: Habilitar y iniciar Node Exporter
+      systemd:
+        name: node_exporter
+        enabled: yes
+        state: started
 ```
-![Abrir archivo](images/tar_node.png)
 
-Mueve el binario al sistema:
+Con este script estamos descargango y extrayendo el contenido del binario, para luego moverlo a `/usr/local/bin/`. Despues creamos el servicio node_exporter, lo configuramos y finalmente lo reiniciamos.
 
-```bash
-sudo mv node_exporter /usr/local/bin/
-```
-![Mover archivo](images/mv_node.png)
-
-### 3.2. Configurar Node Exporter como un Servicio
-
-Crear el archivo del servicio:
-
-```bash
-sudo nano /etc/systemd/system/node_exporter.service
-```
-![Crear servicio](images/node_service.png)
-
-Agrega la configuración siguiente:
-
-```ini
-[Unit]
-Description=Node Exporter
-After=network.target
-
-[Service]
-User=nobody
-ExecStart=/usr/local/bin/node_exporter
-
-[Install]
-WantedBy=default.target
-```
-
-Inicia y habilita el servicio:
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl start node_exporter
-sudo systemctl enable node_exporter
-```
-![Iniciar servicio](images/node_start.png)
 
 ### 3.3. Verificar la Instalación
 

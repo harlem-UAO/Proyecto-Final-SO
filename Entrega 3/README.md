@@ -84,9 +84,9 @@ En este paso, instalaremos el **node_exporter** y configuraremos **Prometheus** 
 
 ### 3.1. Instalar Node Exporter en las maquinas virtuales
 
-Vamos a instalar `node_exporter` por medio del provisionamiento con Ansible, para esto debemos crear un playbook con el script para descargar y configuar `node_exporter` en todos nuestros nodos:
+Vamos a instalar `node_exporter` por medio del provisionamiento con Ansible, para esto debemos crear un playbook `install_node_exporter.yml` con el script para descargar y configuar `node_exporter` en todos nuestros nodos:
 
-```bash
+```init
 ---
 - name: Instalar Node Exporter en todas las VMs
   hosts: all
@@ -141,6 +141,16 @@ Vamos a instalar `node_exporter` por medio del provisionamiento con Ansible, par
 
 Con este script estamos descargango y extrayendo el contenido del binario, para luego moverlo a `/usr/local/bin/`. Despues creamos el servicio node_exporter, lo configuramos y finalmente lo reiniciamos.
 
+Ahora solo nos falta modificar nuestro `vagrantfile` para agregar la siguiente configuracion para el provisionamiento con Ansible:
+
+```init
+  # Provisionar con Ansible para todas las VMs
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+  end
+```
+
+Finalmente ejecutamos `vagrant reload` para reiniciar nuestras maquinas virtuales.
 
 ### 3.3. Verificar la Instalación
 

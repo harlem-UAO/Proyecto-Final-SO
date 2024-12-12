@@ -1,0 +1,50 @@
+---
+- name: Instalar Node Exporter en todas las VMs
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Descargar Node Exporter
+      get_url:
+        url: "https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz"
+        dest: "/tmp/node_exporter.tar.gz"
+
+    - name: Extraer Node Exporter
+      unarchive:
+        src: "/tmp/node_exporter.tar.gz"
+        dest: "/usr/local/bin/"
+        remote_src: yes
+
+    - name: Mover binario de Node Exporter
+      command: mv /usr/local/bin/node_exporter-1.8.2.linux-amd64/node_exporter /usr/local/bin/node_exporter
+
+    - name: Crear usuario para Node Exporter
+      user:
+        name: node_exporter
+        system: yes
+        shell: /sbin/nologin
+
+    - name: Crear archivo de servicio para Node Exporter
+      copy:
+        dest: /etc/systemd/system/node_exporter.service
+        content: |
+          [Unit]
+          Description=Node Exporter
+          After=network.target
+
+          [Service]
+          User=node_exporter
+          ExecStart=/usr/local/bin/node_exporter
+          Restart=always
+
+          [Install]
+          WantedBy=default.target
+
+    - name: Recargar systemd
+      command: systemctl daemon-reload
+
+    - name: Habilitar y iniciar Node Exporter
+      systemd:
+        name: node_exporter
+        enabled: yes
+        state: started

@@ -3,7 +3,7 @@
 
 Esta guía describe cómo cargar un sitio web estático en un servidor Nginx, configurar Prometheus para recopilar métricas de la máquina virtual y luego usar Grafana para visualizar estas métricas.
 
-En el siguiente link se encuentra el [Video Demo](https://https://drive.google.com/file/d/1yClPSL_NuO7WkU0nRgxDUmmhEuqx9N1m/view)
+En el siguiente link se encuentra el [Video Demo](https://drive.google.com/file/d/1yClPSL_NuO7WkU0nRgxDUmmhEuqx9N1m/view)
 
 ## Paso 1: Cargar Archivos Necesarios para Desplegar un Sitio Web Estático
 

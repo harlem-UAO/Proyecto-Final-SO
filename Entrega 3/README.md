@@ -279,3 +279,4 @@ Grafana es una herramienta poderosa para visualizar las métricas recopiladas po
 - Andres Mauricio Ariza: 2217297
 - Eduardo Stevens Marino: 2217227
 - Harlem Maaria Cortes: 2220814
+- Francisco Steven Tabares: 2217223
